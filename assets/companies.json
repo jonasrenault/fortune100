@@ -3390,5 +3390,40 @@
     "squareLogo": "https://media.glassdoor.com/sqll/3059/airbus-group-squarelogo-1456387999277.png",
     "website": "www.jobs.airbusgroup.com",
     "workLifeBalanceRating": "3.9"
+  },
+  {
+    "careerOpportunitiesRating": "3.4",
+    "ceo": {
+      "image": {
+        "height": 160,
+        "src": "https://media.glassdoor.com/people/sqll/130664/inria-antoine-petit.png",
+        "width": 160
+      },
+      "name": "Antoine Petit",
+      "numberOfRatings": 12,
+      "pctApprove": 86,
+      "pctDisapprove": 14,
+      "title": "Pr\u00e9sident Directeur G\u00e9n\u00e9ral"
+    },
+    "compensationAndBenefitsRating": "2.8",
+    "cultureAndValuesRating": "3.9",
+    "exactMatch": true,
+    "fortuneRanking": 19999,
+    "id": 130664,
+    "industry": "Internet",
+    "industryId": 200063,
+    "industryName": "Internet",
+    "isEEP": false,
+    "name": "Inria",
+    "numberOfRatings": 125,
+    "overallRating": "4.1",
+    "ratingDescription": "Very Satisfied",
+    "recommendToFriendRating": 87,
+    "sectorId": 10013,
+    "sectorName": "Information Technology",
+    "seniorLeadershipRating": "3.4",
+    "squareLogo": "https://media.glassdoor.com/sqll/130664/inria-squarelogo-1399566091294.png",
+    "website": "www.inria.fr",
+    "workLifeBalanceRating": "4.3"
   }
 ]
