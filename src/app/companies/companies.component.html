@@ -1,7 +1,7 @@
 <div class="container">
 
 </div>
-<app-radar-chart [company]="selectedCompany"></app-radar-chart>
+<app-radar-chart [companies]="selectedCompanies"></app-radar-chart>
 <div class="container controls">
   <h4>Controls</h4>
   <p>
@@ -16,7 +16,7 @@
       <div class="col-sm-4">
 
         <div class="list-group list-group-flush filter-companies">
-          <button type="button" class="list-group-item list-group-item-action" *ngFor="let company of filteredCompanies" [ngClass]="{'active': company === selectedCompany}" (click)="onSelect(company)">
+          <button type="button" class="list-group-item list-group-item-action" *ngFor="let company of filteredCompanies" [ngClass]="{'active': company.checked}" [style.background-color]="company.checked ? company.color : white" [style.border-color]="company.checked ? company.color : ''" (click)="onSelect(company)">
             {{company.name}}
           </button>
         </div>

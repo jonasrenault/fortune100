@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { CompaniesService } from './companies.service';
+import { RadarChartService } from './radar-chart.service';
 import { CompaniesComponent } from './companies/companies.component';
 import { RadarChartComponent } from './radar-chart/radar-chart.component';
 
@@ -20,7 +21,10 @@ import { RadarChartComponent } from './radar-chart/radar-chart.component';
     HttpModule,
     ReactiveFormsModule
   ],
-  providers: [CompaniesService],
+  providers: [
+    CompaniesService,
+    RadarChartService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

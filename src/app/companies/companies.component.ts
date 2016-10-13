@@ -13,11 +13,11 @@ import 'rxjs/add/operator/debounceTime';
 })
 export class CompaniesComponent implements OnInit {
 
-  public companies : Company[];
-  public filteredCompanies: Company[];
+  public companies : Array<Company>;
+  public filteredCompanies: Array<Company>;
   public nameControl = new FormControl();
   public name = '';
-  private selectedCompany : Company;
+  private selectedCompanies : Array<Company>;
   constructor(private companiesService: CompaniesService) { }
 
   ngOnInit() {
@@ -37,7 +37,8 @@ export class CompaniesComponent implements OnInit {
   }
 
   public onSelect(company: Company) {
-    this.selectedCompany = company;
+    company.checked = !company.checked;
+    this.selectedCompanies = this.companies.filter((company: Company) => company.checked);
   }
 
 }
