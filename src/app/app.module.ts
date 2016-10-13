@@ -1,20 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { CompaniesService } from './companies.service';
+import { CompaniesComponent } from './companies/companies.component';
+import { RadarChartComponent } from './radar-chart/radar-chart.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CompaniesComponent,
+    RadarChartComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [CompaniesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

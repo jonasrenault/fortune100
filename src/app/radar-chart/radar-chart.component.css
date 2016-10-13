@@ -1,0 +1,40 @@
+:host,
+:host .container {
+    width: 100%;
+    display:block;
+}
+
+.label {
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.1;
+}
+
+:host line {
+    stroke: #999;
+    stroke-width: .5;
+}
+:host line.dash {
+    stroke: #333;
+    stroke-width: .5;
+}
+:host text.label {
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0.1;
+}
+:host text.year {
+    font-family: monospace;
+    pointer-events: none;
+}
+:host path.arrow,
+:host text.label {
+    fill: #333;
+    cursor: pointer;
+}
+:host circle {
+    stroke: #000000;
+    stroke-width: 1;
+}

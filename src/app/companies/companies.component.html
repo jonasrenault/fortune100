@@ -1,0 +1,27 @@
+<div class="container">
+
+</div>
+<app-radar-chart [company]="selectedCompany"></app-radar-chart>
+<div class="container controls">
+  <h4>Controls</h4>
+  <p>
+    Click on a category to rotate the chart. Hover on the circles to display department name.
+  </p>
+
+  <form class="form-filter">
+    <div class="row">
+      <div class="col-sm-4">
+        <input type="text" class="form-control" placeholder="Name" autofocus [value]="name" [formControl]="nameControl">
+      </div>
+      <div class="col-sm-4">
+
+        <div class="list-group list-group-flush filter-companies">
+          <button type="button" class="list-group-item list-group-item-action" *ngFor="let company of filteredCompanies" [ngClass]="{'active': company === selectedCompany}" (click)="onSelect(company)">
+            {{company.name}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>
