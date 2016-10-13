@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Company } from '../company';
 import { CompaniesService } from '../companies.service';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs/Rx';
 
 import 'rxjs/add/operator/debounceTime';
 
@@ -13,11 +12,11 @@ import 'rxjs/add/operator/debounceTime';
 })
 export class CompaniesComponent implements OnInit {
 
-  public companies : Array<Company>;
+  public companies: Array<Company>;
   public filteredCompanies: Array<Company>;
   public nameControl = new FormControl();
   public name = '';
-  private selectedCompanies : Array<Company>;
+  private selectedCompanies: Array<Company>;
   constructor(private companiesService: CompaniesService) { }
 
   ngOnInit() {
@@ -38,7 +37,7 @@ export class CompaniesComponent implements OnInit {
 
   public onSelect(company: Company) {
     company.checked = !company.checked;
-    this.selectedCompanies = this.companies.filter((company: Company) => company.checked);
+    this.selectedCompanies = this.companies.filter((c: Company) => c.checked);
   }
 
 }

@@ -25,13 +25,13 @@ export class Company {
     this.cultureAndValuesRating = jsonObject.cultureAndValuesRating;
     this.compensationAndBenefitsRating = jsonObject.compensationAndBenefitsRating;
     this.numberOfRatings = jsonObject.numberOfRatings;
-    if (jsonObject.hasOwnProperty("ceo")) {
+    if (jsonObject.hasOwnProperty('ceo')) {
       this.ceo = jsonObject.ceo.name;
     }
     this.setCompanySlug();
   }
 
   private setCompanySlug(): void {
-    this.slug = this.name.toLowerCase().replace(/[^a-zA-Z0-9]+/g,'');
+    this.slug = this.name.toLowerCase().replace(/[^a-zA-Z0-9]+/g, '');
   }
 }
