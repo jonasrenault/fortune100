@@ -4,37 +4,43 @@
     display:block;
 }
 
-.label {
-  font-family: monospace;
-  font-weight: 700;
-  font-size: 24px;
-  letter-spacing: 0.1;
+:host >>> .level {
+  stroke: #999;
+  stroke-width: .5px;
 }
 
-:host line {
+:host >>> .axis line {
     stroke: #999;
-    stroke-width: .5;
+    stroke-width: 1px;
 }
-:host line.dash {
-    stroke: #333;
-    stroke-width: .5;
+
+:host >>> .axis text.label {
+  font-size: 11px;
+  fill: #999;
 }
-:host text.label {
-    font-family: monospace;
-    font-weight: 700;
-    font-size: 24px;
-    letter-spacing: 0.1;
+
+:host >>> .company-tooltip {
+  position: absolute;
+  width: 270px;
+  padding: 5px;
+  font-size: .8rem;
+  background: rgba(204, 204, 204, 0.57);
+  border: 1px solid;
+  border-radius: 5px;
+  pointer-events: none;
+  color: #373a3c;
 }
-:host text.year {
-    font-family: monospace;
-    pointer-events: none;
+
+:host >>> .company-tooltip h3 {
+  font-size: 1.1rem;
+  margin-bottom: .2rem;
 }
-:host path.arrow,
-:host text.label {
-    fill: #333;
-    cursor: pointer;
+
+:host >>> .company-tooltip .overall {
+  font-style: italic;
+  margin-bottom: .5rem;
 }
-:host circle {
-    stroke: #000000;
-    stroke-width: 1;
+
+:host >>> .company-tooltip .rating {
+  font-size: .7rem;
 }

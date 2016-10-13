@@ -19,21 +19,18 @@ export class RadarChartService {
   private polygon;
   private points;
   private companies;
+  private tooltip;
 
   constructor() {
     this.config = {
       margin : {
-        top: 30,
-        right: 100,
+        top: 50,
+        right: 150,
         bottom: 50,
-        left: 100
+        left: 150
       },
-      padding: {
-        x: 400,
-        y: 100
-      },
-      width: 200,
-      height: 200,
+      width: 250,
+      height: 250,
       radians: 2 * Math.PI,
       levels: 5,
     }
@@ -56,12 +53,13 @@ export class RadarChartService {
   **/
   private buildSVG(): void {
     this.svg = this.host.append('svg')
-    .attr('width', this.config.width + this.config.padding.x)
-    .attr('height', this.config.height + this.config.padding.y)
+    .attr('width', this.config.width + this.config.margin.left + this.config.margin.right)
+    .attr('height', this.config.height + this.config.margin.top + this.config.margin.bottom)
     .append('g')
-    // .attr('transform', 'translate(' + ((this.width - this.side) / 2) + ',' + (this.margin.top + 0.5) + ')')
-    .attr('transform', 'translate(' + (this.config.width / 2) + ',' + (this.config.height / 4) + ')')
+    .attr("transform", "translate(" + this.config.margin.left + "," + this.config.margin.top + ")")
     .append('g');
+
+    this.tooltip = this.host.append("div").attr('class', 'company-tooltip').style('opacity', 0);
   }
 
   /**
@@ -78,17 +76,14 @@ export class RadarChartService {
     .attr("x1", this.config.width / 2)
     .attr("y1", this.config.width / 2)
     .attr("x2", (d, i) => { return this.config.width / 2 * (1 - Math.sin(i * this.config.radians / this.totalAxes)); })
-    .attr("y2", (d, i) => { return this.config.height / 2 * (1 - Math.cos(i * this.config.radians / this.totalAxes)); })
-    .attr("stroke", "grey")
-    .attr("stroke-width", "1px");
+    .attr("y2", (d, i) => { return this.config.height / 2 * (1 - Math.cos(i * this.config.radians / this.totalAxes)); });
 
     this.axes.append('text')
     .attr('class', 'label')
     .text((d:string) => d)
     .attr("text-anchor", "middle")
     .attr("x", (d, i) => { return this.config.width / 2 * (1 - 1.3 * Math.sin(i * this.config.radians / this.totalAxes)); })
-    .attr("y", (d, i) => { return this.config.height / 2 * (1 - 1.1 * Math.cos(i * this.config.radians / this.totalAxes)); })
-    .attr("font-family", "sans-serif")
+    .attr("y", (d, i) => { return this.config.height / 2 * (1 - 1.1 * Math.cos(i * this.config.radians / this.totalAxes)); });
   }
 
   private drawLevels(): void {
@@ -107,9 +102,7 @@ export class RadarChartService {
       .attr("y1", (d, i) => { return levelFactor * (1 - Math.cos(i * this.config.radians / this.totalAxes)); })
       .attr("x2", (d, i) => { return levelFactor * (1 - Math.sin((i + 1) * this.config.radians / this.totalAxes)); })
       .attr("y2", (d, i) => { return levelFactor * (1 - Math.cos((i + 1) * this.config.radians / this.totalAxes)); })
-      .attr("transform", "translate(" + (this.config.width / 2 - levelFactor) + ", " + (this.config.height / 2 - levelFactor) + ")")
-      .attr("stroke", "gray")
-      .attr("stroke-width", "0.5px");
+      .attr("transform", "translate(" + (this.config.width / 2 - levelFactor) + ", " + (this.config.height / 2 - levelFactor) + ")");
     }
   }
 
@@ -137,9 +130,11 @@ export class RadarChartService {
     .on(over, (company:Company) => {
       this.svg.selectAll('polygon').transition(200).attr("fill-opacity", 0.1);
       this.svg.selectAll('g.company.' + company.slug + ' polygon').transition(200).attr("fill-opacity", 0.7);
+      this.tooltipShow(company);
     })
     .on(out, _ => {
       this.svg.selectAll('polygon').transition(200).attr("fill-opacity", 0.3);
+      this.tooltipHide();
     });
   }
 
@@ -167,4 +162,23 @@ export class RadarChartService {
     return pointsString;
   }
 
+  // show tooltip of vertices
+  private tooltipShow(company: Company): void {
+    this.tooltip.transition().duration(200).style("opacity", .9);
+    let html = '<h3 class="header">' + company.fortuneRanking + ' - ' + company.name + '</h3>';
+    html += '<div class="subheader">' + company.industry + '</div>';
+    html += '<div class="overall">Overall Rating: ' + company.overallRating + ' ( ' + company.numberOfRatings + ' ratings )</div>';
+    this.axisProperties.forEach((prop, index) => {
+      const val = company[prop];
+      html += '<div class="rating">' + this.axisLabels[index] + ': ' + val + '</div>'
+    });
+    this.tooltip.html(html);
+    this.tooltip.style("left", (D3.event.pageX) + "px").style("top", (D3.event.pageY - 28) + "px")
+    // .style('background', company.color)
+    .style('border-color', company.color);
+  }
+
+  private tooltipHide(): void {
+    this.tooltip.transition().duration(500).style("opacity", 0);
+  }
 }
