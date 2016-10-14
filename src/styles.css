@@ -1,1 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+.filter-companies {
+  max-height: 300px;
+  overflow: scroll;
+}
+.controls h4 {
+  color: #818a91;
+  margin-top: 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #ddd;
+}
+:host,
+:host .container {
+    width: 100%;
+    display:block;
+}
+
+:host >>> .level {
+  stroke: #999;
+  stroke-width: .5px;
+}
+
+:host >>> .axis line {
+    stroke: #999;
+    stroke-width: 1px;
+}
+
+:host >>> .axis text.label {
+  font-size: 11px;
+  fill: #999;
+}
+
+:host >>> .company-tooltip {
+  position: absolute;
+  width: 270px;
+  padding: 5px;
+  font-size: .8rem;
+  background: rgba(204, 204, 204, 0.57);
+  border: 1px solid;
+  border-radius: 5px;
+  pointer-events: none;
+  color: #373a3c;
+}
+
+:host >>> .company-tooltip h3 {
+  font-size: 1.1rem;
+  margin-bottom: .2rem;
+}
+
+:host >>> .company-tooltip .overall {
+  font-style: italic;
+  margin-bottom: .5rem;
+}
+
+:host >>> .company-tooltip .rating {
+  font-size: .7rem;
+}
