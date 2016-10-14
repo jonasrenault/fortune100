@@ -9,28 +9,27 @@
   padding-bottom: 0.5em;
   border-bottom: 1px solid #ddd;
 }
-:host,
-:host .container {
+.container {
     width: 100%;
     display:block;
 }
 
-:host >>> .level {
+.level {
   stroke: #999;
   stroke-width: .5px;
 }
 
-:host >>> .axis line {
+.axis line {
     stroke: #999;
     stroke-width: 1px;
 }
 
-:host >>> .axis text.label {
+.axis text.label {
   font-size: 11px;
   fill: #999;
 }
 
-:host >>> .company-tooltip {
+.company-tooltip {
   position: absolute;
   width: 270px;
   padding: 5px;
@@ -42,16 +41,16 @@
   color: #373a3c;
 }
 
-:host >>> .company-tooltip h3 {
+.company-tooltip h3 {
   font-size: 1.1rem;
   margin-bottom: .2rem;
 }
 
-:host >>> .company-tooltip .overall {
+.company-tooltip .overall {
   font-style: italic;
   margin-bottom: .5rem;
 }
 
-:host >>> .company-tooltip .rating {
+.company-tooltip .rating {
   font-size: .7rem;
 }
